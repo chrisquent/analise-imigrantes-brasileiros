@@ -1,0 +1,64 @@
+1. Por qué usar Git 
+
+Percíbase que el git es como una máquina del tiempo que nos permite acceder y navegar a diferentes momentos de la historia del proyecto.
+A esos momentos se denomina 'commit'
+Usar un Git tiene varias ventajas:
+a) creamos una organización y un histórico do projeto
+b) nos permite tener 'reproductibilidad' del proyecto en un punto del tiempo 
+c) nos permite tabajar en equipo 
+d) podemos experimentar con seguridad, es decir, podemos abrir nuevas líneas temporales que no impactan en la primera 
+
+2. Desarrollando un ambiente virtual 
+
+Percíbase que al crear un proyecto se usan diversas bibliotecas que, posteriormente, quedarán desactualizadas. 
+Si cargamos esas bibliotecas directamente a nuestra máquina, posiblemente quedaremos trabados, por causa de la constante actualización 
+Es por ese motivo que creamos 'ambientes virtuales' aislados, para que los diversos proyectos sean específicos y no entrne en conflicto debido a las diversas actualizaciones 
+
+a) Para crear el 'ambiente cirtual' basta con escribir el siguiente código en Terminal: 
+python3 -m venv .venv
+
+b) Para usar el 'ambiente virtual creado' es necesario activarlo enla Terminal. Venv aparecerá entre paréntesis (.venv)
+
+en Linux ou Mac: source .venv/bin/activate
+en Windows: .venv\Scripts\activate
+
+c) instalamos todas las bibliotecas del projecto. Si las bibliotecas están descritas en un txt se puede ejecutar el siguiente comando 
+
+pip install -r requirements.txt 
+
+3. Iniciando el repositorio y efectuando commits 
+
+Crear un'repositorio git' significa establecer que un 'directorio' y sus archivos (un proyecto) deben ser 'rastreados' por medio de un 'repositorio git' 
+Este 'directorio' almacena todos los archivos y el histórico completo de alteraciones de un proyecto, permitiendo rastrear versiones 
+
+a) una forma de hacer eso es ir a vs code > source control > 'iniciar repositorio'  
+b) para visualisar el repositorio podemos escribir el siguiente comando ls -la
+Esta operación nos permite acceder a todos los archivos del proyecto. 
+Sin embargo, lo más improtnte es el archivo .git, ese es el repositorio 'dentro del proyecto' 
+Es dentro del directorio .git en donde se guardan todos los commit y todas las informaciones necesarias de control del proyecto 
+
+c) podemos 'borrar' el repositorio si quisiéramos con el siguiente comando
+rm -rf .git
+Percíbase que en vs code > source control > 'iniciar repositorio' ya no tenemos más el repositorio que habíamos creado 
+
+d) también es posible iniciar un repositorio por medio de codigo 
+git init 
+
+4. Areas de un proyecto Git 
+
+Un proyecto Git está formado por tres areas o espacios:
+
+a) Directorio del proyecto o Working Tree 
+Aquí se enceuntra el archivo de Jupyter Notebook
+Aquí podemos verificar el 'status' del repositorio con el comando git status. Esto muestra lo que fue o no fue enviado al repositorio.   
+En caso de no haber enviado nada, pasamos al siguiente paso.  
+
+b) Stage (area intermedia) 
+Recibe los archivos del Working Tree
+Para enviar archivos a Stage usamos el comando git add 
+Una vez en Stage, los archivos están listos para ser enviados a Repositorio Git 
+Para enviar los archivos al Repositorio usamos el comando git commit  
+
+c) Repositorio Git 
+este es el lugar en donde todas las informaciones del historial son grabadas 
+
