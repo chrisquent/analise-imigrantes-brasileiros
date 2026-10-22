@@ -31,7 +31,8 @@ pip install -r requirements.txt
 Crear un'repositorio git' significa establecer que un 'directorio' y sus archivos (un proyecto) deben ser 'rastreados' por medio de un 'repositorio git' 
 Este 'directorio' almacena todos los archivos y el histórico completo de alteraciones de un proyecto, permitiendo rastrear versiones 
 
-a) una forma de hacer eso es ir a vs code > source control > 'iniciar repositorio'  
+a) una forma de hacer eso es ir a vs code > source control > 'iniciar repositorio' 
+
 b) para visualisar el repositorio podemos escribir el siguiente comando ls -la
 Esta operación nos permite acceder a todos los archivos del proyecto. 
 Sin embargo, lo más improtnte es el archivo .git, ese es el repositorio 'dentro del proyecto' 
@@ -49,16 +50,41 @@ git init
 Un proyecto Git está formado por tres areas o espacios:
 
 a) Directorio del proyecto o Working Tree 
-Aquí se enceuntra el archivo de Jupyter Notebook
-Aquí podemos verificar el 'status' del repositorio con el comando git status. Esto muestra lo que fue o no fue enviado al repositorio.   
+Aquí se enceuntra el archivo de Jupyter Notebook y cualquier otro archivo original
+En VS Code, Working Tree equivale al área de 'Explorer' 
+En la terminal podemos verificar el 'status' del repositorio con el comando git status. Esto muestra lo que fue o no fue enviado al repositorio.   
 En caso de no haber enviado nada, pasamos al siguiente paso.  
 
 b) Stage (area intermedia) 
-Recibe los archivos del Working Tree
-Para enviar archivos a Stage usamos el comando git add 
-Una vez en Stage, los archivos están listos para ser enviados a Repositorio Git 
-Para enviar los archivos al Repositorio usamos el comando git commit  
+Stage recibe los archivos del Working Tree
+Para enviar archivos a Stage usamos el comando git add
+En caso de tener varios archivos, es posible enviar todos con el comando git add . 
+Para 'verificar' que los archivos fueron enviados con éxito, es necesario verificar con el comando git status
+
+Una vez en Stage, los archivos están listos para ser enviados a Repositorio Git
+El envio al repositorio es un procedimiento llamado 'commit', es el acto de hacer una fotografía o registro instantáneo del proyecto  
+Para enviar los archivos y realizar un 'commit' usamos el comando 
+git commit -m "Sua mensagem aqui" 
+Percíbase que el anterior comando también rotula con un nombre esa fotografía o 'commit' del proyecto 
 
 c) Repositorio Git 
 este es el lugar en donde todas las informaciones del historial son grabadas 
+
+5. Verificando log do repositorio 
+
+a) dado que git es una herramienta para la colaboración de varios participantes, es necesario identificarlos 
+Para conseguir esa identificación, es necesario configurar un nombre de usuario y un email 
+El comando para realizar esa configuración son los siguientes:  
+
+para definir el nombre: git config --global user.name "Seu Nome"
+para definir el e-mail: git config --global user.email "seuemail@exemplo.com" 
+
+Para saber si el nombre de usuario y email fueron configurados, es posible verificar con estos comandos 
+git config --global user.name
+git config --global user.email
+
+b) una vez creadas las identificacones, es posible consultar el histórico de commits 
+Para consultar el histórico, basta con escribir el comando git log 
+En la terminal será exibida el ID del commit, 'main' que significa la linea de tiempo principal, el autor de la modificación y la fecha 
+
 
