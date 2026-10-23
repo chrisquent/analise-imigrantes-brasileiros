@@ -2,6 +2,7 @@
 
 Percíbase que el git es como una máquina del tiempo que nos permite acceder y navegar a diferentes momentos de la historia del proyecto.
 A esos momentos se denomina 'commit'
+
 Usar un Git tiene varias ventajas:
 a) creamos una organización y un histórico do projeto
 b) nos permite tener 'reproductibilidad' del proyecto en un punto del tiempo 
@@ -14,7 +15,7 @@ Percíbase que al crear un proyecto se usan diversas bibliotecas que, posteriorm
 Si cargamos esas bibliotecas directamente a nuestra máquina, posiblemente quedaremos trabados, por causa de la constante actualización 
 Es por ese motivo que creamos 'ambientes virtuales' aislados, para que los diversos proyectos sean específicos y no entrne en conflicto debido a las diversas actualizaciones 
 
-a) Para crear el 'ambiente cirtual' basta con escribir el siguiente código en Terminal: 
+a) Para crear el 'ambiente virtual' basta con escribir el siguiente código en Terminal: 
 python3 -m venv .venv
 
 b) Para usar el 'ambiente virtual creado' es necesario activarlo enla Terminal. Venv aparecerá entre paréntesis (.venv)
@@ -87,4 +88,77 @@ b) una vez creadas las identificacones, es posible consultar el histórico de co
 Para consultar el histórico, basta con escribir el comando git log 
 En la terminal será exibida el ID del commit, 'main' que significa la linea de tiempo principal, el autor de la modificación y la fecha 
 
+c) accediendo a los commits  
+Para acceder al repositorio y analizar los commits, basta con realizar alguna modificación en el proyecto 
+Luego es necesario enviar 'nuevamente' el proyecto del Working Tree al area de Stage, por medio del comando gid add 
+Para verificar si se envió se puede usar el comando git status
+Continúo sacando la fotografía (commit) y enviando al repositorio con el comando:
+git commit -m "Sua mensagem aqui"
+Para finalizar, verifico si el nuevo commit fue almacenado correctamente en el repositorio con el comando
+git log  
+
+6. Git Hub, repositorios rempotos 
+
+Para crear una sincronización entre el Git y el Github es necesario una 'llave primaria de acceso' llamada 'llave SSH' 
+Estas llaves SSH sirven para 'autenticar' nuestra identidad perante el GIthub 
+Es como una tarjeta de identidad o una llave maestra que comprueva que somos los dueños de una cuenta que está intentando relacionarse con el servidor 
+Ahora bien, es interesante tener llaves/identidades distintas, con permisos diferentes, en una misma máquina, pero para 'proyectos diferentes' 
+Esto garantiza mayor organización y seguridad, diferenciando proyectos personales y profesionales 
+
+a) creando la llave
+Usamos el comando
+ssh-keygen 
+Especificamos el algoritmo de criptografía
+ssh-keygen -t rsa
+Usamos parámetro para adicionar email
+ssh-keygen -t rsa -C "christianquentaherrera@gmail.com"
+Indicamos cuál será el archivo que 'guardará' la llave primaria. Por defecto, el sistema intenta guardar la llave en la misma ruta y con el mimso nombre '/Users/christian/.ssh/id_rsa'
+Sin embargo, como es esperado generar varias llaves, percíbase que guardar las llaves con el mismo nombre 'sustituye y borra' las llaves antiguas ya almacenadas 
+Es por ese motivo que el procedimiento indica crear siempre un 'nuevo nombre de llave', en este caso 'id_rsa_alura'
+/Users/christian/.ssh/id_rsa_alura
+Percíbase por tanto que 'id_rsa_alura.' es la llave privada que debe ser guardada y mantenerse en seguridad 
+Después el sistema pide definir una clave de acceso; en este caso, la clave será simplemente 'github' 
+Finalmente el sistema iguarda la 'llave pública' que sí puede ser compartida, en este caso salióla ruta y archivo '/Users/christian/.ssh/id_rsa_alura.pub.'
+Para acceder a la 'llave pública' en mac basta con ir a la ruta especificada; percíbase que en mac esos archivos permanecen ocultos
+Para visualizar los archivos ocultos en mac usamos Cmd + Shift + .
+Después de acceder a la 'llave pública' copiamos la llave y la registramos dentor del Github 
+
+b) Dentro de Github 
+Vamos a Menú > Settings > SSH and GPG Keys > SSH Keys > New SSH Key 
+Ponemos un nombre y copiamos la llave pública 
+Ahora está todo listo para subir el proyecto a Github 
+
+c) Creando el repositorio dentro de Github 
+
+En Github vamos a Menu > Repositories > New 
+Determinamos el nombre del repositorio; tomar cuidado con el nombre, porque se convertirá después en url 
+Github orienta qué códigos son necesarios copiar dentro de Terminal VS code
+
+En VS Code primero copiamos en Terminal: 
+git remote add origin https://github.com/chrisquent/analise-imigrantes-brasileiros.git
+percíbase que 'origin' es simplemente un nick name 
+
+Ahora es posible publicar [enviar] el repositorio personal dentro el repositorio 'remoto' de Github
+Para realizar este procedimiento, especificamos:
+- el comando: git push 
+- cuál es el repositorio específico: git push origin 
+- sobre cuál 'línea de tiempo' queremos publicar (en este caso, queremos la línea de tiempo principal): git push origin main 
+
+Percíbase que todas las veces que queremos publicar algum projeto novo al repositorio, devemos realizar todo ese procedimiento de comandos
+Sin embargo, existe un atajo rapido para realizar la primeira publicación e estabelecer o vínculo: git push -u origin main
+Una vez hecho esto, ambos repositorios están sincronizados con éxito
+
+Si realizamos modificaciones al proyecto y queremos actualizar nosso repositorio em Github, basta com digitar em Terminal git push 
+
+7. Colaboración y branches 
+Para colaborar com um proyecto es necesario que el colaborador 'clone el repositorio' 
+Es decir, un colaborador tiene que realizar una copia del proyecto en su computadora
+Para ello, basta con seguir estos pasos:
+Github > projecto > Code > Clone > SSH > VS code > Source Control > Clone Repository > [seleccionar donde guardar el proyecto] > [digitar la clave de acceso]
+
+Sin embargo, no basta con 'clonar el repositorio', también es necesario realizar las 'buenas prácticas' vistas al comienzo 
+crear un ambiente virtual > activar el ambiente virtual > instalar las bibliotecas del proyecto > abrir notbook para probar 
+
+Existe ota forma alternativa para realizar la clonación:
+Terminal > git clone [seguido del link web del proyecto] > git clone https://github.com/chrisquent/analise-imigrantes-brasileiros
 
